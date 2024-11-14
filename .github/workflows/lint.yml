@@ -1,4 +1,6 @@
-on: push
+on: 
+    push:
+    pull_request:
 name: lint
 
 jobs:
@@ -11,15 +13,15 @@ jobs:
               with:
                   clean: false
 
-            - name: Use Node.js 14
-              uses: actions/setup-node@v1
+            - name: Use Node.js 21
+              uses: actions/setup-node@v4
               with:
-                  node-version: 14.x
+                  node-version: 21.x
 
             - name: Install deps
-              run: yarn
+              run: pnpm i
 
             - name: Run ESLint
-              run: yarn lint
+              run: pnpm lint
               env:
                   CI: true
