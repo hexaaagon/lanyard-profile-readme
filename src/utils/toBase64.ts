@@ -5,7 +5,11 @@ export const encodeBase64 = async (url: string): Promise<string> => {
     response = await fetch(url, {
       cache: "no-store",
     })
-      .then((res) => res.blob())
+      .then((res) => {
+        console.log("debug", res);
+
+        return res.blob();
+      })
       .then(async (blob) => {
         const buffer = Buffer.from(await blob.arrayBuffer());
         return buffer.toString("base64");
